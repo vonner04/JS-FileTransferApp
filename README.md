@@ -3,13 +3,12 @@
 Applying knowledge from university courses; and also because internship hunting is cooked.
 ### Website Color Palette
 
-<div style="display: flex; justify-content: center;">
-  <div style="background-color: #D3E0E6; width: 50px; height: 50px; margin-right: 10px;"></div>
-  <div style="background-color: #6F7D95; width: 50px; height: 50px; margin-right: 10px;"></div>
-  <div style="background-color: #2B3A55; width: 50px; height: 50px; margin-right: 10px;"></div>
-  <div style="background-color: #87A8A2; width: 50px; height: 50px; margin-right: 10px;"></div>
-  <div style="background-color: #D6D2C4; width: 50px; height: 50px; margin-right: 10px;"></div>
-</div>
+![#D3E0E6](https://via.placeholder.com/50/D3E0E6/000000?text=+) 
+![#6F7D95](https://via.placeholder.com/50/6F7D95/000000?text=+) 
+![#2B3A55](https://via.placeholder.com/50/2B3A55/000000?text=+) 
+![#87A8A2](https://via.placeholder.com/50/87A8A2/000000?text=+) 
+![#D6D2C4](https://via.placeholder.com/50/D6D2C4/000000?text=+) 
+
 
 ## Dependencies 
 - Express; routing and server-side logic
