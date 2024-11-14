@@ -1,13 +1,11 @@
 # JS-FileTransferApp
 ### Motivation?
 Applying knowledge from university courses; and also because internship hunting is cooked.
-### Website Color Palette
 
-![#D3E0E6](https://via.placeholder.com/50/D3E0E6/000000?text=+) 
-![#6F7D95](https://via.placeholder.com/50/6F7D95/000000?text=+) 
-![#2B3A55](https://via.placeholder.com/50/2B3A55/000000?text=+) 
-![#87A8A2](https://via.placeholder.com/50/87A8A2/000000?text=+) 
-![#D6D2C4](https://via.placeholder.com/50/D6D2C4/000000?text=+) 
+
+
+
+
 
 
 ## Dependencies 
@@ -35,5 +33,8 @@ Starting the server:
 Starting the front-end: 
 - npm run dev
 
+### Website Color Palette
 
-
+<div align="center">
+  <img src="front-end/src/assets/palette.png" alt="Color Palette" width="500">
+</div>
