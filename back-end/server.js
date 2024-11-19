@@ -1,4 +1,3 @@
-//Use the following command to start the server: npm run devStart, utilises nodemon to restart the server when changes are made.
 const express = require("express");
 const cors = require("cors");
 const app = express();
