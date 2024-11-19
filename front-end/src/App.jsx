@@ -1,5 +1,5 @@
 import axios from 'axios';
-import './App.css';
+import Navigation from './components/navigation-bar/Navigation';
 
 const apiCall = () => {
   axios.get('http://localhost:3000')
@@ -14,9 +14,13 @@ const apiCall = () => {
 function App() {
 
   return (
-   <div className="App">
-    <button onClick={apiCall}>Click Me</button>
-   </div>
+    <>
+      <div className='flex'>
+        {/*sidebar*/}
+        <Navigation />
+        {/*main content*/}
+      </div>
+    </>
   )
 }
 
