@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Add global box-sizing reset */
+*,
+*:before,
+*:after {
+	@apply box-border;
+}
+
+/* custom icon */
+@layer components {
+	.sidebar-icon {
+		@apply relative self-center w-6 h-6;
+	}
+}
