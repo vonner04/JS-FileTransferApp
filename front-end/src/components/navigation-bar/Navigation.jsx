@@ -1,31 +1,56 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { TfiMenu, TfiHome, TfiShare, TfiTime, TfiFolder, TfiSettings } from "react-icons/tfi";
+import '../../styles/navigation-bar.css';
 
 function Navigation() {
+  // State to manage the collapse state
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  // Toggle collapse state
+  const toggleSidebar = () => setIsCollapsed(!isCollapsed);
+
   return (
-    <div className ="fixed top-0 left-0 h-screen w-52 m-0 grid grid-rows-[auto,1fr,auto] items-start bg-primary-background text-primary-text text-xl">
+    <div
+      className={`fixed top-0 left-0 h-screen ${
+        isCollapsed ? 'w-16' : 'w-52'
+      } m-0 flex flex-col bg-primary-background text-primary-text text-xl transition-width duration-300 ease-in-out`}
+    >
       {/* Menu Icon */}
-      <div className='flex flex-row justify-center'> 
-      <TfiMenu className="sidebar-icon mt-4 "/>
+      <div className="flex flex-row justify-between items-center mt-4 px-4">
+        {!isCollapsed && <span className="font-semibold">FileTransfer</span>}
+        <TfiMenu
+          className="sidebar-icon cursor-pointer"
+          onClick={toggleSidebar}
+        />
       </div>
-      
-      {/* Links*/}
-      <div className='flex flex-col gap-y-8 mt-4'>
-        <div className='flex flex-row items-center space-x-4'>
-          <TfiHome className='sidebar-icon left-1'></TfiHome><span>Home</span></div>
-        <div className='flex flex-row items-center space-x-4'>
-          <TfiShare className='sidebar-icon left-1'></TfiShare><span>File Transfer</span></div>
-        <div className='flex flex-row items-center space-x-4'>
-          <TfiTime className='sidebar-icon left-1'></TfiTime><span>Recent Transfer</span></div>
-        <div className='flex flex-row items-center space-x-4'>
-          <TfiFolder className='sidebar-icon left-1'></TfiFolder><span>My Files</span>
+
+      {/* Links */}
+      <div className="flex flex-col mt-8 space-y-4">
+        <div className={`${isCollapsed ? 'sidebar-icons-container-collapsed' : 'sidebar-icons-container-expanded'} sidebar-hover-animation`}>
+          <TfiHome className="sidebar-icon" />
+          {!isCollapsed && <span>Home</span>}
+        </div>
+        <div className={`${isCollapsed ? 'sidebar-icons-container-collapsed' : 'sidebar-icons-container-expanded'} sidebar-hover-animation`}>
+          <TfiShare className="sidebar-icon" />
+          {!isCollapsed && <span>File Transfer</span>}
+        </div>
+        <div className={`${isCollapsed ? 'sidebar-icons-container-collapsed' : 'sidebar-icons-container-expanded'} sidebar-hover-animation`}>
+          <TfiTime className="sidebar-icon" />
+          {!isCollapsed && <span>Recent Transfer</span>}
+        </div>
+        <div className={`${isCollapsed ? 'sidebar-icons-container-collapsed' : 'sidebar-icons-container-expanded'} sidebar-hover-animation`}>
+          <TfiFolder className="sidebar-icon" />
+          {!isCollapsed && <span>My Files</span>}
         </div>
       </div>
-     
-      <div className='flex flex-row items-center space-x-4 mb-4'>
-        <TfiSettings className='sidebar-icon left-1'></TfiSettings><span>Account Settings</span></div>
+
+      {/* Account Settings */}
+      <div className={`mt-auto ${isCollapsed ? 'sidebar-icons-container-collapsed' : 'sidebar-icons-container-expanded'} sidebar-hover-animation`}>
+        <TfiSettings className="sidebar-icon" />
+        {!isCollapsed && <span>Account Settings</span>}
+      </div>
     </div>
-  )
+  );
 }
 
-export default Navigation
+export default Navigation;

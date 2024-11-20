@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Home() {
+function Files() {
   return (
     <div>
-      HOME
+      MY FILES
     </div>
   )
 }
 
-export default Home
+export default Files

@@ -8,7 +8,11 @@ export default {
     extend: {
       colors: {
         'primary-background': '#2B3A55',
+        'primary-background-hover': '#1E2A3F',
         'primary-text': '#FFFFFF'
+      },
+      transitionProperty: {
+        'width': 'width',
       },
     },
     
