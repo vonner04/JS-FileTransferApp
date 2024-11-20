@@ -1,0 +1,23 @@
+@tailwind components;
+
+/* Custom styles for the sidebar */
+@layer components {
+	/* Icon styling */
+	.sidebar-icon {
+		@apply relative self-center w-6 h-6;
+	}
+
+	/* Hover animation for links */
+	.sidebar-hover-animation {
+		@apply hover:bg-primary-background-hover transition duration-300;
+	}
+
+	/* Sidebar styling */
+	.sidebar-icons-container-expanded {
+		@apply flex flex-row items-center space-x-4 px-2 py-2;
+	}
+
+	.sidebar-icons-container-collapsed {
+		@apply flex flex-row items-center space-x-4 px-4 py-2;
+	}
+}
