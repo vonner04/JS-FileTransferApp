@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Files() {
+function MyFiles() {
   return (
     <div>
       MY FILES
@@ -8,4 +8,4 @@ function Files() {
   )
 }
 
-export default Files
+export default MyFiles
