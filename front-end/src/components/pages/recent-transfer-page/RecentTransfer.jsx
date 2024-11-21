@@ -3,7 +3,7 @@ import React from 'react'
 function RecentTransfer() {
   return (
     <div>
-      RECENTS
+      TRANSFER RECENTS
     </div>
   )
 }
