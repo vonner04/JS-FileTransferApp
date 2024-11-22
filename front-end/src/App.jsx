@@ -22,7 +22,7 @@ const apiCall = () => {
 function App() {
 	return (
 		<>
-			<div className="flex flex-row">
+			<div className="flex flex-row w-screen h-screen">
 				{/*sidebar*/}
 				<Navigation />
 
@@ -31,9 +31,9 @@ function App() {
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route path="/file-transfer" element={<FileTransfer />} />
-            <Route path="/recent-transfer" element={<RecentTransfer />} />
-            <Route path="/my-files" element={<MyFiles />} />
-            <Route path="/account-settings" element={<AccountSettings />} />
+						<Route path="/recent-transfer" element={<RecentTransfer />} />
+						<Route path="/my-files" element={<MyFiles />} />
+						<Route path="/account-settings" element={<AccountSettings />} />
 					</Routes>
 				</div>
 			</div>
