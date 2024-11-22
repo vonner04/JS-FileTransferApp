@@ -14,10 +14,17 @@
 
 	/* Sidebar styling */
 	.sidebar-icons-container-expanded {
-		@apply flex flex-row items-center space-x-4 px-2 py-2;
+		@apply flex flex-row items-center space-x-4 px-2 py-4;
 	}
 
 	.sidebar-icons-container-collapsed {
-		@apply flex flex-row items-center space-x-4 px-4 py-2;
+		@apply flex flex-row items-center space-x-4 px-4 py-4;
 	}
+}
+
+/* Active link styling */
+.active-link {
+	background-color: #454d5a; /* Darker background for active link */
+	color: #ffffff; /* Highlighted text color */
+	border-left: 4px solid #2b6cb0; /* Highlight indicator */
 }
