@@ -24,7 +24,7 @@
 
 /* Active link styling */
 .active-link {
-	background-color: #454d5a; /* Darker background for active link */
-	color: #ffffff; /* Highlighted text color */
-	border-left: 4px solid #2b6cb0; /* Highlight indicator */
+	background-color: theme("colors.primary-highlight"); /* Darker background for active link */
+	color: theme("colors.primary-text"); /* Highlighted text color */
+	border-left: 4px solid theme("colors.primary-highlight-border"); /* Highlight indicator */
 }
