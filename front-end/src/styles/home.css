@@ -1,0 +1,31 @@
+@tailwind components;
+
+@layer components {
+	.card-alignment {
+		@apply items-center justify-center gap-x-8;
+	}
+
+	.responsive-cards-column {
+		@apply flex flex-col items-stretch;
+	}
+
+	.responsive-cards-row {
+		@apply flex flex-row;
+	}
+
+	.icon-text-alignment {
+		@apply items-center gap-y-2 gap-x-2;
+	}
+
+	/* Default (small screens): Top border */
+	.responsive-border {
+		@apply border-t-4 pt-4 pb-4 border-gray-400;
+	}
+
+	/* Medium and larger screens: Left border */
+	@screen md {
+		.responsive-border {
+			@apply border-t-0 border-l-4 pl-4 pt-0 pb-0;
+		}
+	}
+}

@@ -34,17 +34,6 @@ function Navigation() {
 					{!isCollapsed && <span>Home</span>}
 				</NavLink>
 				<NavLink
-					to="/file-transfer"
-					className={({ isActive }) =>
-						`${isActive ? "active-link" : ""} ${
-							isCollapsed ? "sidebar-icons-container-collapsed" : "sidebar-icons-container-expanded"
-						} sidebar-hover-animation`
-					}
-				>
-					<TfiShare className="sidebar-icon" />
-					{!isCollapsed && <span>File Transfer</span>}
-				</NavLink>
-				<NavLink
 					to="/recent-transfer"
 					className={({ isActive }) =>
 						`${isActive ? "active-link" : ""} ${
