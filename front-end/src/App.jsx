@@ -32,6 +32,7 @@ function App() {
 						<Route path="/recent-transfer" element={<RecentTransfer />} />
 						<Route path="/my-files" element={<MyFiles />} />
 						<Route path="/account-settings" element={<AccountSettings />} />
+						<Route path="/login" element={<div>Login</div>} />
 					</Routes>
 				</div>
 			</div>
