@@ -5,6 +5,7 @@ import Home from "./components/pages/home-page/Home";
 import RecentTransfer from "./components/pages/recent-transfer-page/RecentTransfer";
 import MyFiles from "./components/pages/file-system-page/MyFiles";
 import AccountSettings from "./components/pages/account-settings-page/AccountSettings";
+import Auth from "./components/pages/user-auth-page/Auth";
 
 //EXAMPLE API CALL USING AXIOS see backend for the server
 const apiCall = () => {
@@ -32,7 +33,7 @@ function App() {
 						<Route path="/recent-transfer" element={<RecentTransfer />} />
 						<Route path="/my-files" element={<MyFiles />} />
 						<Route path="/account-settings" element={<AccountSettings />} />
-						<Route path="/login" element={<div>Login</div>} />
+						<Route path="/login" element={<Auth />} />
 					</Routes>
 				</div>
 			</div>
