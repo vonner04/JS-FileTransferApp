@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../../../styles/form.css";
 import { useAuth } from "../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { AiOutlineCheckCircle } from "react-icons/ai";
+import { AiOutlineCheckCircle, AiOutlineGoogle, AiOutlineInstagram, AiOutlineFacebook } from "react-icons/ai";
 
 export default function Auth() {
 	const { login } = useAuth();
@@ -28,10 +28,23 @@ export default function Auth() {
 		navigate("/");
 	};
 
+	//Alternative login methods using social media; placeholders
+	const handleGoogleSignIn = () => {
+		console.log("Google Sign In");
+	};
+
+	const handleInstagramSignIn = () => {
+		console.log("Instagram Sign In");
+	};
+
+	const handleFacebookSignIn = () => {
+		console.log("Facebook Sign In");
+	};
+
 	return (
-		<div className="flex flex-col items-center justify-center p-8 h-screen bg-gray-100 text-primary-text relative">
+		<div className="background-style">
 			{/* Form */}
-			<div className="bg-primary-background p-8 w-96 rounded-lg shadow-md">
+			<div className="form-container">
 				<h2 className="text-center text-2xl font-semibold mb-6">{isRegistering ? "Register" : "Login"}</h2>
 
 				<form onSubmit={handleSubmit} className="flex flex-col">
@@ -41,7 +54,7 @@ export default function Auth() {
 						placeholder="Email"
 						value={formData.email}
 						onChange={handleChange}
-						className="p-3 rounded-md bg-gray-200 text-black mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
+						className="input-style"
 						required
 					/>
 
@@ -51,7 +64,7 @@ export default function Auth() {
 						placeholder="Password"
 						value={formData.password}
 						onChange={handleChange}
-						className="p-3 rounded-md bg-gray-200 text-black mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
+						className="input-style"
 						required
 					/>
 
@@ -62,17 +75,38 @@ export default function Auth() {
 							placeholder="Confirm Password"
 							value={formData.confirmPassword}
 							onChange={handleChange}
-							className="p-3 rounded-md bg-gray-200 text-black mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
+							className="input-style"
 							required
 						/>
 					)}
-					<button type="submit" className="bg-blue-500 text-white p-3 rounded-md hover:bg-primary-highlight-border">
+					<button type="submit" className="submission-button">
 						{isRegistering ? "Register" : "Login"}
 					</button>
 				</form>
+
+				<div className="options-container">
+					<p className="text-center text-gray-300 mb-2">Or continue with:</p>
+					<div className="options-style">
+						<button onClick={handleGoogleSignIn} className="alternative-sign-in-button google-color-button">
+							<AiOutlineGoogle className="sign-in-options-logo-style" />
+							Google
+						</button>
+
+						<button onClick={handleInstagramSignIn} className="alternative-sign-in-button instagram-color-button">
+							<AiOutlineInstagram className="sign-in-options-logo-style" />
+							Instagram
+						</button>
+
+						<button onClick={handleFacebookSignIn} className="alternative-sign-in-button facebook-color-button">
+							<AiOutlineFacebook className="sign-in-options-logo-style" />
+							Facebook
+						</button>
+					</div>
+				</div>
+
 				<p className="text-center mt-4">
 					{isRegistering ? "Already have an account?" : "Don't have an account?"}{" "}
-					<span onClick={toggleRegister} className="text-primary-highlight-border cursor-pointer hover:underline">
+					<span onClick={toggleRegister} className="switch-prompt-style">
 						{isRegistering ? "Login" : "Register"}
 					</span>
 				</p>
