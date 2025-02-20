@@ -8,6 +8,7 @@ import AccountSettings from "./components/pages/account-settings-page/AccountSet
 import Auth from "./components/pages/user-auth-page/Auth";
 import { useAuth } from "./context/AuthContext";
 import LoginSuccess from "./components/notifcation-popup/LoginSuccess";
+import { useEffect } from "react";
 
 //EXAMPLE API CALL USING AXIOS see backend for the server
 const apiCall = () => {
@@ -23,6 +24,7 @@ const apiCall = () => {
 
 function App() {
 	const { successMessage } = useAuth();
+
 	return (
 		<>
 			<div className="flex flex-row w-screen max-h-screen">
