@@ -12,7 +12,12 @@ describe("Auth Controller - Unit Tests", () => {
 
 	beforeEach(() => {
 		mockReq = { body: {}, user: {} };
-		mockRes = { json: jest.fn(), status: jest.fn().mockReturnThis() };
+		mockRes = {
+			json: jest.fn(),
+			status: jest.fn().mockReturnThis(),
+			cookie: jest.fn(), // Mock cookie function to prevent errors
+			clearCookie: jest.fn(),
+		};
 	});
 
 	it("should register a user successfully", async () => {
@@ -42,11 +47,15 @@ describe("Auth Controller - Unit Tests", () => {
 		mockReq.body = { email: "test@example.com", password: "password123" };
 		User.findOne.mockResolvedValue({ email: "test@example.com", password: "hashedpassword" });
 		bcrypt.compare.mockResolvedValue(true);
-		jwt.sign.mockReturnValue("mockAccessToken");
+
+		jwt.sign
+			.mockReturnValueOnce("mockAccessToken") // First call (access token)
+			.mockReturnValueOnce("mockRefreshToken"); // Second call (refresh token)
 
 		await loginUser(mockReq, mockRes);
 
 		expect(mockRes.status).toHaveBeenCalledWith(200);
+		expect(mockRes.cookie).toHaveBeenCalledWith("refreshToken", "mockRefreshToken", expect.any(Object));
 		expect(mockRes.json).toHaveBeenCalledWith({ accessToken: "mockAccessToken" });
 	});
 
