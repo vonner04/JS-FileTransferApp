@@ -1,3 +1,5 @@
+require("../testSetup");
+
 const request = require("supertest");
 const app = require("../../app");
 
@@ -34,8 +36,6 @@ describe("Auth API Tests", () => {
 	// Get user information with a valid token
 	it("should get the user's information with a valid token", async () => {
 		const res = await request(app).get("/auth/user").set("Authorization", `Bearer ${token}`);
-
-		console.log(res.body.message);
 
 		expect(res.statusCode).toEqual(200);
 		expect(res.body.email).toEqual(testEmail);
