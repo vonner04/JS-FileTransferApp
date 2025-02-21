@@ -61,10 +61,10 @@ const loginUser = async (req, res) => {
 		const { email, password } = req.body;
 
 		const user = await User.findOne({ email });
-		if (!user) return res.status(400).json({ message: "Invalid email or password" });
+		if (!user) return res.status(400).json({ message: "User not registered" });
 
 		const isMatch = await bcrypt.compare(password, user.password);
-		if (!isMatch) return res.status(400).json({ message: "Invalid email or password" });
+		if (!isMatch) return res.status(400).json({ message: "Incorrect password" });
 
 		const accessToken = generateAccessToken(user);
 		const refreshToken = generateRefreshToken(user);
@@ -73,12 +73,12 @@ const loginUser = async (req, res) => {
 			httpOnly: true,
 			secure: process.env.NODE_ENV === "production",
 			sameSite: "Strict",
-			maxAge: 7 * 24 * 60 * 60 * 1000,
+			maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
 		});
 
-		res.json({ accessToken });
+		res.status(200).json({ accessToken }); // Explicitly setting status 200
 	} catch (err) {
-		console.error(err);
+		console.error("Login Error:", err);
 		res.status(500).json({ message: "Server error" });
 	}
 };
