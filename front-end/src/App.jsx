@@ -23,7 +23,7 @@ const apiCall = () => {
 };
 
 function App() {
-	const { successMessage } = useAuth();
+	const { notificationMessage } = useAuth();
 
 	return (
 		<>
@@ -34,7 +34,7 @@ function App() {
 				{/*main content*/}
 				<div className="w-full relative">
 					{/* Global Login Success Notification */}
-					{successMessage && <LoginSuccess />}
+					{notificationMessage && <LoginSuccess />}
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route path="/recent-transfer" element={<RecentTransfer />} />

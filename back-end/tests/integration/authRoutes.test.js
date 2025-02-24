@@ -33,6 +33,14 @@ describe("Auth API Tests", () => {
 		token = res.body.accessToken;
 	});
 
+	//Log out the user
+	it("should log out the user and receive a message", async () => {
+		const res = await request(app).post("/auth/logout").set("Authorization", `Bearer ${token}`);
+
+		expect(res.statusCode).toEqual(200);
+		expect(res.body.message).toEqual("Logged out successfully");
+	});
+
 	// Get user information with a valid token
 	it("should get the user's information with a valid token", async () => {
 		const res = await request(app).get("/auth/user").set("Authorization", `Bearer ${token}`);
