@@ -30,7 +30,7 @@ const registerUser = async (req, res) => {
 		const { email, password } = req.body;
 
 		const existingUser = await User.findOne({ email });
-		if (existingUser) return res.status(400).json({ message: "User already exists" });
+		if (existingUser) return res.status(400).json({ message: "User Already Exists" });
 
 		const salt = await bcrypt.genSalt(10);
 		const hashedPassword = await bcrypt.hash(password, salt);
@@ -38,10 +38,10 @@ const registerUser = async (req, res) => {
 		const newUser = new User({ email, password: hashedPassword });
 		await newUser.save();
 
-		res.status(201).json({ message: "User registered successfully" });
+		res.status(201).json({ message: "User Registered Successfully" });
 	} catch (err) {
 		console.error(err);
-		res.status(500).json({ message: "Server error" });
+		res.status(500).json({ message: "Server Error" });
 	}
 };
 
@@ -61,10 +61,10 @@ const loginUser = async (req, res) => {
 		const { email, password } = req.body;
 
 		const user = await User.findOne({ email });
-		if (!user) return res.status(400).json({ message: "User not registered" });
+		if (!user) return res.status(400).json({ message: "User Not Registered" });
 
 		const isMatch = await bcrypt.compare(password, user.password);
-		if (!isMatch) return res.status(400).json({ message: "Incorrect password" });
+		if (!isMatch) return res.status(400).json({ message: "Incorrect Passsword" });
 
 		const accessToken = generateAccessToken(user);
 		const refreshToken = generateRefreshToken(user);
@@ -76,10 +76,10 @@ const loginUser = async (req, res) => {
 			maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
 		});
 
-		res.status(200).json({ accessToken }); // Explicitly setting status 200
+		res.status(200).json({ message: "Login Successful", accessToken }); // Explicitly setting status 200
 	} catch (err) {
 		console.error("Login Error:", err);
-		res.status(500).json({ message: "Server error" });
+		res.status(500).json({ message: "Server Error" });
 	}
 };
 
@@ -92,7 +92,7 @@ const loginUser = async (req, res) => {
  */
 const logoutUser = (req, res) => {
 	res.clearCookie("refreshToken");
-	res.json({ message: "Logged out successfully" });
+	res.json({ message: "Logged Out Successfully" });
 };
 
 /**
@@ -108,12 +108,12 @@ const logoutUser = (req, res) => {
 const getUser = async (req, res) => {
 	try {
 		const user = await User.findById(req.user.userId).select("-password");
-		if (!user) return res.status(404).json({ message: "User not found" });
+		if (!user) return res.status(404).json({ message: "User Not Found" });
 
 		res.json(user);
 	} catch (err) {
 		console.error(err);
-		res.status(500).json({ message: "Internal server error" });
+		res.status(500).json({ message: "Internal Server Error" });
 	}
 };
 

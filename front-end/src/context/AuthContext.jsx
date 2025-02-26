@@ -18,6 +18,7 @@ export function AuthProvider({ children }) {
 				.catch((err) => console.error("Fetch User Error:", err));
 		}
 	}, [token]);
+	console.log(notificationMessage);
 
 	//User authentication functions
 	const login = async (email, password) => {
@@ -25,12 +26,12 @@ export function AuthProvider({ children }) {
 			const res = await axios.post(`http://localhost:3000/auth/login`, { email, password }); //, { withCredentials: true } might need this
 			setToken(res.data.accessToken);
 			setIsAuthenticated(true);
-			setNotificationMessage("Login Successful");
+			setNotificationMessage(res.data.message);
 			return true;
 		} catch (err) {
 			console.error("Login Error:", err);
 			setIsAuthenticated(false);
-			setNotificationMessage("Login Failed");
+			setNotificationMessage(err.response.data.message);
 			return false;
 		}
 	};
@@ -39,12 +40,14 @@ export function AuthProvider({ children }) {
 		try {
 			const res = await axios.post(`http://localhost:3000/auth/register`, { email, password });
 			setIsAuthenticated(true);
-			setNotificationMessage("Registration Successful");
+			setNotificationMessage(res.data.message);
 			return true;
 		} catch (err) {
 			console.error("Register Error:", err);
 			setIsAuthenticated(false);
-			setNotificationMessage("Register Failed");
+			setTimeout(() => {
+				setNotificationMessage(err.response?.data?.message || "Login Failed");
+			}, 50);
 			return false;
 		}
 	};
@@ -56,11 +59,11 @@ export function AuthProvider({ children }) {
 			setToken("");
 			setUser(null);
 			setIsAuthenticated(false);
-			setNotificationMessage("Logout Successful");
+			setNotificationMessage(res.data.message);
 			return true;
 		} catch (err) {
 			console.error("Logout Error:", err);
-			setNotificationMessage("Logout Failed");
+			setNotificationMessage(err.response.data.message);
 			return false;
 		}
 	};
