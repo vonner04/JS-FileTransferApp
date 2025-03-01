@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { AiOutlineCheckCircle, AiOutlineCloseCircle } from "react-icons/ai";
 import { useAuth } from "../../context/AuthContext";
 
+//A pop-up notification that appears top right of the page.
 function AuthNotification() {
 	const { notificationMessage, clearNotificationMessage, isAuthenticated } = useAuth();
 

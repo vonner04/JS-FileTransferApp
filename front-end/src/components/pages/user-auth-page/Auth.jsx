@@ -1,20 +1,17 @@
 import React, { useState } from "react";
 import "../../../styles/form.css";
+import { AiOutlineGoogle, AiOutlineInstagram, AiOutlineFacebook } from "react-icons/ai";
 import { useAuth } from "../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { AiOutlineGoogle, AiOutlineInstagram, AiOutlineFacebook } from "react-icons/ai";
+import { useAuthForm } from "../../../hooks/useAuthForm";
 
 export default function Auth() {
 	const { login, register, notificationMessage } = useAuth();
 	const [isRegistering, setIsRegistering] = useState(false);
-	const [formData, setFormData] = useState({ email: "", password: "", confirmPassword: "" });
 	const navigate = useNavigate();
+	const { formData, errors, isFormValid, handleChange } = useAuthForm(isRegistering);
 
 	const toggleRegister = () => setIsRegistering(!isRegistering);
-
-	const handleChange = (e) => {
-		setFormData({ ...formData, [e.target.name]: e.target.value });
-	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -23,7 +20,9 @@ export default function Auth() {
 			alert("Passwords do not match");
 			return;
 		}
+
 		let success = false;
+
 		if (isRegistering) {
 			success = await register(formData.email, formData.password);
 		} else {
@@ -55,14 +54,24 @@ export default function Auth() {
 				<h2 className="text-center text-2xl font-semibold mb-6">{isRegistering ? "Register" : "Login"}</h2>
 
 				<form onSubmit={handleSubmit} className="flex flex-col">
-					<input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} className="input-style" required />
+					{/* Email */}
+					<input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} className={`input-style ${errors.email ? "border-red-500" : "border-gray-200"}`} required />
+					{errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
 
-					<input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} className="input-style" required />
+					{/* Password */}
+					<input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} className={`input-style ${errors.password ? "border-red-500" : "border-gray-200"}`} required />
+					{errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
 
-					{isRegistering && ( //Show confirm password field only when registering
-						<input type="password" name="confirmPassword" placeholder="Confirm Password" value={formData.confirmPassword} onChange={handleChange} className="input-style" required />
+					{/* Confirm Password (only in Register mode) */}
+					{isRegistering && (
+						<>
+							<input type="password" name="confirmPassword" placeholder="Confirm Password" value={formData.confirmPassword} onChange={handleChange} className={`input-style ${errors.confirmPassword ? "border-red-500" : "border-gray-200"}`} required />
+							{errors.confirmPassword && <p className="text-red-500 text-sm">{errors.confirmPassword}</p>}
+						</>
 					)}
-					<button type="submit" className="submission-button">
+
+					{/* Submit Button */}
+					<button type="submit" className={`submission-button ${!isFormValid && "opacity-50 cursor-not-allowed"}`} disabled={!isFormValid}>
 						{isRegistering ? "Register" : "Login"}
 					</button>
 				</form>

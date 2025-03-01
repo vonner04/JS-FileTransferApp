@@ -7,7 +7,7 @@ import MyFiles from "./components/pages/file-system-page/MyFiles";
 import AccountSettings from "./components/pages/account-settings-page/AccountSettings";
 import Auth from "./components/pages/user-auth-page/Auth";
 import { useAuth } from "./context/AuthContext";
-import AuthNotification from "./components/notifcation-popup/AuthNotification";
+import AuthNotification from "./components/notification/AuthNotification";
 
 function App() {
 	const { notificationMessage } = useAuth();
