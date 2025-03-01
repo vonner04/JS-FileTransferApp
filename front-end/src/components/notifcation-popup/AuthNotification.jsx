@@ -23,7 +23,7 @@ function AuthNotification() {
 			className={`absolute top-4 right-4 text-white flex items-center p-3 rounded-lg shadow-md animate-fade-in z-[9999] 
                  ${isAuthenticated ? "bg-green-500" : "bg-red-500"}`}
 		>
-			<AiOutlineCheckCircle className="text-2xl mr-2" />
+			{isAuthenticated ? <AiOutlineCheckCircle className="text-2xl mr-2" /> : <AiOutlineCloseCircle className="text-2xl mr-2" />}
 			<span>{notificationMessage}</span>
 		</div>
 	);
