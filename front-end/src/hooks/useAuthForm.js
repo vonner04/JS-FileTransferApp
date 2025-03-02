@@ -8,16 +8,15 @@ export const useAuthForm = (isRegistering) => {
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
-		setFormData((prev) => ({ ...prev, [name]: value }));
+		const newFormData = { ...formData, [name]: value };
+		setFormData(newFormData);
 
 		setErrors((prevErrors) => {
-			const newErrors = { ...prevErrors, ...validateField(name, value, formData, isRegistering) };
-
-			// Remove the error text below an input box
-			if (!validateField(name, value, formData, isRegistering)[name]) {
+			const newErrors = { ...prevErrors, ...validateField(name, value, newFormData, isRegistering) };
+			// Remove error for this field if validation passes
+			if (!validateField(name, value, newFormData, isRegistering)[name]) {
 				delete newErrors[name];
 			}
-
 			return newErrors;
 		});
 	};
@@ -25,9 +24,16 @@ export const useAuthForm = (isRegistering) => {
 	//Check if form is valid
 	useEffect(() => {
 		const hasErrors = Object.keys(errors).length > 0;
-		const hasEmptyFields = Object.values(formData).some((val) => val.trim() === "");
+		//This removes the confirmPassword value when checking empty fields of the formData during login
+		const hasEmptyFields = Object.keys(formData)
+			.filter((key) => (isRegistering ? true : key !== "confirmPassword"))
+			.some((key) => formData[key].trim() === "");
 		setIsFormValid(!hasErrors && !hasEmptyFields);
 	}, [errors, formData]);
+
+	useEffect(() => {
+		console.log(errors);
+	}, [errors]);
 
 	return { formData, errors, isFormValid, handleChange };
 };

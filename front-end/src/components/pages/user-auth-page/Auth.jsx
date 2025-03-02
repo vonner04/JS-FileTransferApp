@@ -11,7 +11,14 @@ export default function Auth() {
 	const navigate = useNavigate();
 	const { formData, errors, isFormValid, handleChange } = useAuthForm(isRegistering);
 
-	const toggleRegister = () => setIsRegistering(!isRegistering);
+	/**
+	 * formData.confirmPassword has to be cleared to an empty string due to isFormValid logic
+	 * in useAuthForm.js
+	 */
+	const toggleRegister = () => {
+		setIsRegistering(!isRegistering);
+		formData.confirmPassword = "";
+	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
