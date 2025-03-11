@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { TfiMenu, TfiHome, TfiShare, TfiTime, TfiFolder, TfiSettings } from "react-icons/tfi";
+import { TfiMenu, TfiHome, TfiTime, TfiFolder, TfiSettings, TfiUser } from "react-icons/tfi";
 import "../../styles/navigation-bar.css";
+import { useAuth } from "../../context/AuthContext";
 
 function Navigation() {
 	const [isCollapsed, setIsCollapsed] = useState(false);
-
+	const { isAuthenticated, login, logout } = useAuth();
 	const toggleSidebar = () => setIsCollapsed(!isCollapsed);
 
 	return (
@@ -34,17 +35,6 @@ function Navigation() {
 					{!isCollapsed && <span>Home</span>}
 				</NavLink>
 				<NavLink
-					to="/file-transfer"
-					className={({ isActive }) =>
-						`${isActive ? "active-link" : ""} ${
-							isCollapsed ? "sidebar-icons-container-collapsed" : "sidebar-icons-container-expanded"
-						} sidebar-hover-animation`
-					}
-				>
-					<TfiShare className="sidebar-icon" />
-					{!isCollapsed && <span>File Transfer</span>}
-				</NavLink>
-				<NavLink
 					to="/recent-transfer"
 					className={({ isActive }) =>
 						`${isActive ? "active-link" : ""} ${
@@ -68,18 +58,32 @@ function Navigation() {
 				</NavLink>
 			</div>
 
-			{/* Account Settings */}
-			<NavLink
-				to="/account-settings"
-				className={({ isActive }) =>
-					`${isActive ? "active-link" : ""} ${
-						isCollapsed ? "sidebar-icons-container-collapsed" : "sidebar-icons-container-expanded"
-					} sidebar-hover-animation mt-auto`
-				}
-			>
-				<TfiSettings className="sidebar-icon" />
-				{!isCollapsed && <span>My Account</span>}
-			</NavLink>
+			{/* Login/Register or Account Settings */}
+			{!isAuthenticated ? (
+				<NavLink
+					to="/login"
+					className={({ isActive }) =>
+						`${isActive ? "active-link" : ""} ${
+							isCollapsed ? "sidebar-icons-container-collapsed" : "sidebar-icons-container-expanded"
+						} sidebar-hover-animation mt-auto`
+					}
+				>
+					<TfiUser className="sidebar-icon" />
+					{!isCollapsed && <span>Login/Register</span>}
+				</NavLink>
+			) : (
+				<NavLink
+					to="/account-settings"
+					className={({ isActive }) =>
+						`${isActive ? "active-link" : ""} ${
+							isCollapsed ? "sidebar-icons-container-collapsed" : "sidebar-icons-container-expanded"
+						} sidebar-hover-animation mt-auto`
+					}
+				>
+					<TfiSettings className="sidebar-icon" />
+					{!isCollapsed && <span>My Account</span>}
+				</NavLink>
+			)}
 		</div>
 	);
 }

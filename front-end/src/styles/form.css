@@ -1,0 +1,55 @@
+@tailwind components;
+
+@layer components {
+	.alternative-sign-in-button {
+		@apply flex items-center text-white px-4 py-2 rounded-md transition w-32 justify-center transition ease-in-out duration-300;
+	}
+
+	.submission-button {
+		@apply bg-blue-500 text-white p-3 rounded-md hover:bg-primary-highlight-border;
+	}
+
+	.instagram-color-button {
+		@apply hover:bg-pink-600 bg-pink-500;
+	}
+
+	.facebook-color-button {
+		@apply hover:bg-blue-600 bg-blue-500;
+	}
+
+	.google-color-button {
+		@apply hover:bg-red-600 bg-red-500;
+	}
+
+	.form-container {
+		@apply bg-primary-background p-8 w-auto rounded-lg shadow-md;
+	}
+
+	.options-container {
+		@apply mt-6 border-t pt-4;
+	}
+
+	.options-style {
+		@apply flex justify-center space-x-2;
+	}
+
+	.input-style {
+		@apply p-3 rounded-md bg-gray-200 text-black mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400 border-2 border-solid;
+	}
+
+	.background-style {
+		@apply flex flex-col items-center justify-center p-8 h-screen bg-gray-100 text-primary-text relative;
+	}
+
+	.sign-in-logo-options-style {
+		@apply text-xl mr-2;
+	}
+
+	.switch-prompt-style {
+		@apply text-primary-highlight-border cursor-pointer hover:underline;
+	}
+
+	.switch-text-style {
+		@apply text-center mt-4;
+	}
+}
